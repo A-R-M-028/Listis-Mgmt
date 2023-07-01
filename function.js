@@ -11,7 +11,7 @@ const saveChanges = () => {
   };
   
   const newCard = `
-<!-- 2nd column -->
+
 <div class="col col-sm-12 col-md-6 col-lg-4 h-100" id=${taskData.id} >
   <div class="card">
     <div class="card-header d-flex justify-content-end gap-2">

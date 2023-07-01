@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM"
+      crossorigin="anonymous"
+    />
+    <!-- Put custom css after boots link -> It takes latest styles -->
+    <!-- Font owesome -> Fafa icon***** -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body onload="loadInitialCardData()">
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand fw-bold text-info" href="#">Listis</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarSupportedContent"
+          aria-controls="navbarSupportedContent"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#">Home</a>
+            </li>
+          </ul>
+          <form class="d-flex">
+
+            <!-- Button trigger modal -->
+            <button
+              type="button"
+              class="btn btn-primary btn btn-info fw-bold"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
+            >
+              <i
+                class="fa-solid fa-plus fa-beat-fade"
+                style="color: #000000"
+              ></i>
+              Add New
+            </button>
+
+            <!-- Modal -->
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      Modal title
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="form-group mt-3">
+                      <label for="imageurl">Image URL</label>
+                      <input
+                        type="url"
+                        class="form-control"
+                        id="imageurl"
+                        aria-describedby="Image URL"
+                        placeholder="http://example.com/xyz.png"
+                      />
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <label for="tasktitle">Task Title</label>
+                      <input type="text" class="form-control" id="tasktitle"
+                      aria-describedby="Task Title" placeholder="Enter Task Title">
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <label for="tasktype">Task Type</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="tasktype"
+                        aria-describedby="Task Type"
+                        placeholder="Enter Task Type"
+                      />
+                    </div>
+
+                    <div class="form-group mt-3">
+                      <label for="taskdescription">Task Description</label>
+                      <textarea
+                        rows="6"
+                        type="text"
+                        class="form-control"
+                        id="taskdescription"
+                        aria-describedby="Task Description"
+                        placeholder="Enter Task Description"
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button
+                      type="button"
+                      class="btn btn-secondary"
+                      data-bs-dismiss="modal"
+                    >
+                      Close
+                    </button>
+                    <button
+                      type="button"
+                      class="btn btn-primary"
+                      onclick="saveChanges()"
+                      data-bs-dismiss="modal"
+                    >
+                      Save changes
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Now have to implement card of search -->
+
+    <div class="container">
+      <div class="row mt-5">
+        <!-- 1st column -->
+        <div class="col">
+          <!-- Content of the first column -->
+        </div>
+
+        <!-- 2nd column -->
+        <!-- Mid portion -->
+        <div class="col col-sm-12 col-md-6 col-lg-4">
+          <div class="input-group mb-3">
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Items"
+              aria-label="Recipient's username"
+              aria-describedby="basic-addon2"
+            />
+            <span class="input-group-text" id="basic-addon2">Search</span>
+          </div>
+        </div>
+
+        <!-- 3rd column -->
+        <div class="col">
+          <!-- Content of the third column -->
+        </div>
+      </div>
+      <br />
+
+      <!-- 
+        CARD IS STARTING
+       -->
+      <div class="row mt-5 task_container"></div>
+      
+    </div>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.min.js"
+      integrity="sha512-3dZ9wIrMMij8rOH7X3kLfXAzwtcHpuYpEgQg1OA4QAob1e81H8ntUQmQm3pBudqIoySO5j0tHN4ENzA6+n2r4w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script src="function.js"></script>
+  </body>
+</html>

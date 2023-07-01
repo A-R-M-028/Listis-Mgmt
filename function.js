@@ -26,15 +26,15 @@ const generateNewCard = (taskData) => `
 `;
 
 const loadInitialCardData = () => {
-  // 1. Local storage to get listis card data
+  // 1. Local storage to get Listis card data
   const getCardData = localStorage.getItem("Listis");
 
   // 2. Convert to normal object - Inverse of stringify -> parse {key,value}
   const { cards } = JSON.parse(getCardData);
 
-  // 3. Loop over those array of task object to create html card and then inject to DOM
+  // 3. Loop over the array of task objects to create HTML cards and then inject them into the DOM
   cards.map((cardObject) => {
-    // For each cardObject this code will run
+    // For each cardObject, this code will run
     taskContainer.insertAdjacentHTML("beforeend", generateNewCard(cardObject));
 
     // 4. Update our global store
@@ -51,14 +51,14 @@ const saveChanges = () => {
     taskDescription: document.getElementById("taskdescription").value,
   };
 
-  // Push new card next to prev element
+  // Push new card next to the previous element
   taskContainer.insertAdjacentHTML("beforeend", generateNewCard(taskData));
 
-  //Till now only -> View only not stored anything - To fix refreshing data gone problem - Object of object
+  // Update our global store
   globalStore.push(taskData);
 
-  // To array of object
-  localStorage.setItem("Listis", JSON.stringify({ ashikur: globalStore }));
+  // Save the updated card data to localStorage
+  localStorage.setItem("Listis", JSON.stringify({ cards: globalStore }));
 };
 
 // Not same with id imageurl
@@ -80,3 +80,11 @@ const saveChanges = () => {
 //   const numbers = [4, 9, 16, 25];
 // document.getElementById("demo").innerHTML = numbers.map(Math.sqrt);
 // Within map cardObject, opeatation on cards not from generateNewCard
+
+  //  const { cards } = JSON.parse(getCardData);
+  // -> Alternative
+  // const parsedCardData = JSON.parse(getCardData);
+  // Use empty array as default if cards is undefined -> The optional chaining operator (?.)
+  // const cards = parsedCardData?.cards || [];
+
+
